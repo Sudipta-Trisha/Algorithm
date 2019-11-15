@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-using namespasssssce std;
+using namespace std;
 
 void knapsack(int num, float profits[], float weights[],float capacity)
 {
@@ -58,17 +58,11 @@ int main()
 	for(int i=0; i<num; i++){
 		for(int j=i+1; j<num; j++){
 			if(ratio[i]<ratio[j]){
-				temp = ratio[i];
-				ratio[i] = ratio[j];
-				ratio[j] = temp;
+				swap(ratio[i],ratio[j]);
 
-				temp = profits[i];
-				profits[i] = profits[j];
-				profits[j] = temp;
+				swap(profits[i],profits[j]);
 
-				temp = weights[i];
-				weights[i] = weights[j];
-				weights[j] = temp;
+				swap(weights[i],weights[j]);
 			}
 		}
 	}
