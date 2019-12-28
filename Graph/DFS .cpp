@@ -3,7 +3,7 @@ using namespace std;
 const int nax=500;
 vector<vector<int> > graph(nax , vector<int>()); 
 
-void bfs(int node, int source)
+void dfs(int node, int source)
 {
     stack<int>q;
     q.push(source) ;
@@ -43,6 +43,6 @@ int main()
     cout<<"Enter the starting node: ";
     cin>>source;
     
-    bfs(node,source);
+    dfs(node,source);
     
 }
