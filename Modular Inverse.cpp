@@ -1,36 +1,37 @@
 #include<bits/stdc++.h>
+#define ll long long int
 using namespace std;
 
-int egcd(int a, int b, int *x, int *y)
+ll egcd(ll a, ll b, ll& x, ll& y)
 {
-    if(a==0){
-        *x = 0;
-        *y = 1;
-        return b;
+    if(b==0){
+        x = 1;
+        y = 0;
+        return a;
     }
-    int x1, y1;
-    int gcd = egcd(b%a,a,&x1,&y1);
-    
-    *x = y1 - (b/a)*x1;
-    *y = x1;
-    
-    return gcd;
+    ll x1, y1;
+    ll g = egcd(b,a%b,x1,y1);
+
+    x = y1;
+    y = x1 - y1*(a/b);
+
+    return g;
 }
 
-void modInverse(int a, int b)
+void modInverse(ll a, ll b)
 {
-    int x,y;
-    int g = egcd(a,b,&x,&y);
+    ll x,y;
+    ll g = egcd(a,b,x,y);
     if(g!=1) cout<<"Inverse is not found"<<endl;
     else{
-        int ans = ((x%b) + b)%b;
+        ll ans = ((x%a) + a)%a;
         cout<<"Modular Inverse is "<<ans<<endl;
     }
 }
 
 int main()
 {
-    int a,b,x,y;
+    ll a,b,x,y;
     cin>>a>>b;
     modInverse(a,b);
     return 0;
