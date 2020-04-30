@@ -1,4 +1,7 @@
-//***To find the totient function of any number***
+/*To find the totient function of any number*/
+/*Time complexity - O(nlog(logn))
+Source --- CP-Algorithm */
+
 
 #include<bits/stdc++.h>
 #define ll long long int
