@@ -1,39 +1,65 @@
-/*Also known as All Pair Shortest Path.It's a dynamaic programming (DP) based algorithm. */
+/*Sudipta Banik Trisha*/
+
+/*This algorithm is also known as All Pair Shortest Path algorithm. It's based on Dynamic Programming(DP). */
 
 #include<bits/stdc++.h>
 using namespace std;
+#define sz 100
 
-void solve(int cost[][3])
+void printsol(int node, int cost[][sz]);
+
+void apsp()
 {
-   //int cost[node][node] ;
-   for(int k=0; k<3; k++){
-     for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-            if(cost[i][k]*cost[k][j]!=0 && i!=j){
-                if(cost[i][k]+cost[k][j]<cost[i][j] || cost[i][j]==0){
-                    cost[i][j] = cost[i][k] + cost[k][j];
+    int node;
+    cin >> node;
+    
+    int cost[node][node];
+    
+    for(int i=0; i<node; i++){
+        for(int j=0; j<node; j++){
+            cin >> cost[i][j];
+        }
+    }
+    
+    int dis[node][node];
+    
+    for(int i=0; i<node; i++){
+        for(int j=0; j<node; j++){
+            dis[i][j] = cost[i][j];
+        }
+    }
+    
+    for(int k=0; k<node; k++){
+        for(int j=0; j<node; j++){
+            for(int i=0; i<node; i++){
+                if(dis[j][i] > dis[j][k] + dis[k][i]){
+                    dis[j][i] = dis[j][k] + dis[k][i];
                 }
             }
         }
-     }
-   }
-   cout<<"Minimum cost: "<<endl;
-   for(int i=0; i<3; i++){
-    for(int j=0; j<3; j++){
-        cout<<cost[i][j]<<" ";
     }
-    cout<<endl;
-   }
+    
+    cout << "The shortest path matrix: " << endl;
+    
+    for(int i=0; i<node; i++){
+        for(int j=0; j<node; j++){
+            if( dis[i][j] == 999)    // here i have used infinity value as 999
+                cout << "INF" << " ";
+            else 
+                cout << dis[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    cout << endl;
 }
 
 int main()
 {
-    int cost[3][3];
-    for(int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-            cin>>cost[i][j];
-        }
-    }
-    solve(cost);
+    apsp();
+    
     return 0;
 }
+    
+    
+
