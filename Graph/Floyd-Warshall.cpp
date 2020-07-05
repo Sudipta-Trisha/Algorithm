@@ -6,8 +6,6 @@
 using namespace std;
 #define sz 100
 
-void printsol(int node, int cost[][sz]);
-
 void apsp()
 {
     int node;
